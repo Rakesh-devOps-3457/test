@@ -21,4 +21,4 @@ jobs:
     - name: Deploy to GCP VM
       run: |
         ssh -o StrictHostKeyChecking=no prathmesh@34.47.140.225 "
-          sudo systemctl restart nginx && echo 'NGINX  restarted on GCP VM'"
+          sudo systemctl restart nginx && echo 'NGINX restarted on GCP VM'"
