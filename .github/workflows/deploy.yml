@@ -1,0 +1,24 @@
+name: Deploy NGINX
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH agent
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.GCP_SSH_KEY }}
+
+    - name: Deploy to GCP VM
+      run: |
+        ssh -o StrictHostKeyChecking=no prathmesh@34.47.140.225 "
+          sudo systemctl restart nginx && echo 'NGINX restarted on GCP VM'"
